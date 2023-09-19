@@ -1,4 +1,4 @@
-package com.example.luckyapp.ui.slideshow;
+package com.example.luckyapp.ui.combine;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.luckyapp.databinding.FragmentSlideshowBinding;
+import com.example.luckyapp.databinding.FragmentCombineBinding;
 
-public class SlideshowFragment extends Fragment {
+public class CombineFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentCombineBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SlideshowViewModel slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        CombineViewModel combineViewModel =
+                new ViewModelProvider(this).get(CombineViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentCombineBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        combineViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

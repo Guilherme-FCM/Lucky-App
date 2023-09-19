@@ -12,14 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.luckyapp.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_draw"
+        android:name="com.example.luckyapp.ui.draw.DrawFragment"
+        android:label="@string/menu_draw"
+        tools:layout="@layout/fragment_draw" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.luckyapp.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_combine"
+        android:name="com.example.luckyapp.ui.combine.CombineFragment"
+        android:label="@string/menu_combine"
+        tools:layout="@layout/fragment_combine" />
+
+    <fragment
+        android:id="@+id/nav_capture"
+        android:name="com.example.luckyapp.ui.capture.CaptureFragment"
+        android:label="@string/menu_capture"
+        tools:layout="@layout/fragment_capture" />
 </navigation>

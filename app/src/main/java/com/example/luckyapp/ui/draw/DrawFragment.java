@@ -1,4 +1,4 @@
-package com.example.luckyapp.ui.gallery;
+package com.example.luckyapp.ui.draw;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.luckyapp.databinding.FragmentGalleryBinding;
+import com.example.luckyapp.databinding.FragmentDrawBinding;
 
-public class GalleryFragment extends Fragment {
+public class DrawFragment extends Fragment {
 
-    private FragmentGalleryBinding binding;
+    private FragmentDrawBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        DrawViewModel drawViewModel =
+                new ViewModelProvider(this).get(DrawViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentDrawBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        drawViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

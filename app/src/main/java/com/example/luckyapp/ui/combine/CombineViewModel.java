@@ -1,16 +1,16 @@
-package com.example.luckyapp.ui.gallery;
+package com.example.luckyapp.ui.combine;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class CombineViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public CombineViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is 'Combinar' fragment");
     }
 
     public LiveData<String> getText() {
