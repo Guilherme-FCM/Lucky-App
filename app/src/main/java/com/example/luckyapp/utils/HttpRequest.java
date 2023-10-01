@@ -11,8 +11,9 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
-public class HttpRequest<R> {
+public class HttpRequest {
     HttpURLConnection connection;
 
     public HttpRequest(String address) throws IOException {
@@ -20,12 +21,9 @@ public class HttpRequest<R> {
         connection = (HttpURLConnection) url.openConnection();
     }
 
-    public R get() throws IOException {
-        Gson gson = new Gson();
-        Type type = new TypeToken<R>(){}.getType();
-
+    public String get() throws IOException {
         connection.setRequestMethod("GET");
-        return gson.fromJson(makeRequest(), type);
+        return makeRequest();
     }
 
     public String convertToJson(InputStream input) throws IOException {

@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.luckyapp.databinding.FragmentHomeBinding;
 
+import java.util.List;
+
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
@@ -24,9 +26,12 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        homeViewModel.getData().observe(getViewLifecycleOwner(), this::showDataOnScreen);
         return root;
+    }
+
+    private void showDataOnScreen(List<List<Integer>> data) {
+        binding.textHome.setText(data.toString());
     }
 
     @Override

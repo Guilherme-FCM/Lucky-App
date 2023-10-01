@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,16 +17,26 @@ public class DrawFragment extends Fragment {
 
     private FragmentDrawBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        DrawViewModel drawViewModel =
-                new ViewModelProvider(this).get(DrawViewModel.class);
-
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            ViewGroup container,
+            Bundle savedInstanceState
+    ) {
         binding = FragmentDrawBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        drawViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        DrawViewModel drawViewModel = new ViewModelProvider(this).get(DrawViewModel.class);
+
+
+//        final TextView textView = binding.textGallery;
+
+        drawViewModel.getRandomNumbers().observe(getViewLifecycleOwner(), (d) -> {
+            Toast.makeText(getContext(), "Random nums " + d.toString(), Toast.LENGTH_SHORT).show();
+        });
+        drawViewModel.getMatchedNumbers().observe(getViewLifecycleOwner(), (d) -> {
+            Toast.makeText(getContext(), "Mached nums " + d.toString(), Toast.LENGTH_SHORT).show();
+        });
+
         return root;
     }
 
