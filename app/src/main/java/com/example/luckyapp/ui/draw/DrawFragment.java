@@ -25,10 +25,7 @@ public class DrawFragment extends Fragment {
         binding = FragmentDrawBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        DrawViewModel drawViewModel = new ViewModelProvider(this).get(DrawViewModel.class);
-
-
-//        final TextView textView = binding.textGallery;
+        DrawViewModel drawViewModel = new DrawViewModel();
 
         drawViewModel.getRandomNumbers().observe(getViewLifecycleOwner(), (d) -> {
             Toast.makeText(getContext(), "Random nums " + d.toString(), Toast.LENGTH_SHORT).show();

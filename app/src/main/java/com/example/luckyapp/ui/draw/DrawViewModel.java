@@ -18,9 +18,11 @@ import java.util.stream.Collectors;
 public class DrawViewModel extends ViewModel {
     private final MutableLiveData<List<Integer>> randomNumbers;
     private final MutableLiveData<List<List<Integer>>> matchedNumbers;
+    public static List<Integer> randomList;
 
     public DrawViewModel() {
-        randomNumbers = new MutableLiveData<>(createRandomList());
+        DrawViewModel.randomList = createRandomList();
+        randomNumbers = new MutableLiveData<>(DrawViewModel.randomList);
         matchedNumbers = new MutableLiveData<>();
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
