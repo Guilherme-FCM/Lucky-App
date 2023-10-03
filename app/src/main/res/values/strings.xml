@@ -5,7 +5,7 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_store">Armazenar</string>
 
     <string name="menu_home">Iniciar</string>
     <string name="menu_draw">Sortear</string>

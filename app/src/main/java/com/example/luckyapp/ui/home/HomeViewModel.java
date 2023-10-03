@@ -31,7 +31,6 @@ public class HomeViewModel extends ViewModel {
         executor.execute(() -> {
             List<List<Integer>> response = JsonDataService.getJsonData();
             handler.post(() -> {
-                Log.i("s", response.toString());
                 data.setValue(response);
             });
         });
