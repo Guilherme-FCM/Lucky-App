@@ -28,13 +28,17 @@ public class CaptureFragment extends Fragment {
                 new ViewModelProvider(this).get(CaptureViewModel.class);
 
         captureViewModel.getData().observe(getViewLifecycleOwner(), data -> {
-            Toast.makeText(getContext(), captureViewModel.join(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(getContext(), captureViewModel.major().toString(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(getContext(), captureViewModel.average().toString(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(getContext(), captureViewModel.descending().toString(), Toast.LENGTH_SHORT).show();
+            binding.join.setOnClickListener(v -> { setResult(captureViewModel.join()); });
+            binding.major.setOnClickListener(v -> { setResult(captureViewModel.major().toString()); });
+            binding.average.setOnClickListener(v -> { setResult(captureViewModel.average().toString()); });
+            binding.descending.setOnClickListener(v -> { setResult(captureViewModel.descending().toString()); });
         });
 
         return binding.getRoot();
+    }
+
+    private void setResult(String text) {
+        binding.result.setText(text);
     }
 
     @Override

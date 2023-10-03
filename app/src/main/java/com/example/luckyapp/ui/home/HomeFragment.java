@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -31,7 +31,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void showDataOnScreen(List<List<Integer>> data) {
-        binding.textHome.setText(data.toString());
+        ArrayAdapter<Integer> adapter1 = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, data.get(0));
+        binding.list1.setAdapter(adapter1);
+
+        ArrayAdapter<Integer> adapter2 = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, data.get(1));
+        binding.list2.setAdapter(adapter2);
     }
 
     @Override

@@ -4,14 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.luckyapp.databinding.FragmentDrawBinding;
+
+import java.util.List;
 
 public class DrawFragment extends Fragment {
 
@@ -27,14 +28,26 @@ public class DrawFragment extends Fragment {
 
         DrawViewModel drawViewModel = new DrawViewModel();
 
-        drawViewModel.getRandomNumbers().observe(getViewLifecycleOwner(), (d) -> {
-            Toast.makeText(getContext(), "Random nums " + d.toString(), Toast.LENGTH_SHORT).show();
-        });
-        drawViewModel.getMatchedNumbers().observe(getViewLifecycleOwner(), (d) -> {
-            Toast.makeText(getContext(), "Mached nums " + d.toString(), Toast.LENGTH_SHORT).show();
-        });
+        drawViewModel.getMatchedNumbers().observe(getViewLifecycleOwner(), this::showMatchListInfo);
+        drawViewModel.getRandomNumbers().observe(getViewLifecycleOwner(), this::showRandomList);
 
         return root;
+    }
+
+    private void showRandomList(List<Integer> data) {
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, data);
+        binding.list.setAdapter(adapter);
+    }
+
+    private void showMatchListInfo(List<List<Integer>> data) {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < data.size(); i++) {
+            List<Integer> list = data.get(i);
+            builder.append(list.size() + " números compatíveis no vetor " + (i + 1) + ": " + list + "\n");
+        }
+
+        binding.matchListInfo.setText(builder.toString());
     }
 
     @Override

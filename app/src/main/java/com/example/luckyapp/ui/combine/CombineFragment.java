@@ -29,31 +29,15 @@ public class CombineFragment extends Fragment {
     {
         binding = FragmentCombineBinding.inflate(inflater, container, false);
 
-        CombineViewModel combineViewModel =
-                new ViewModelProvider(this).get(CombineViewModel.class);
+        CombineViewModel combineViewModel = new CombineViewModel();
 
-        final TextView textView = binding.textSlideshow;
-        combineViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        binding.button.setOnClickListener(v -> {
+            String name = binding.edit.getText().toString();
+            Integer sum = combineViewModel.sumRandomPick(name);
+            Toast.makeText(getContext(), "Resultado da soma: " + sum.toString(), Toast.LENGTH_SHORT).show();
+        });
 
-        Toast.makeText(getContext(), getRandomPickSum(), Toast.LENGTH_SHORT).show();
         return binding.getRoot();
-    }
-
-    private Integer getRandomPickSum() {
-        List<Integer> list = randomPick();
-        return list.stream().mapToInt(i -> i).sum();
-    }
-
-    private List<Integer> randomPick() {
-        String name = "test";
-        Random random = new Random();
-
-        ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0; i < name.length(); i++) {
-            int position = random.nextInt(DrawViewModel.randomList.size());
-            list.add(DrawViewModel.randomList.get(position));
-        }
-        return list;
     }
 
     @Override

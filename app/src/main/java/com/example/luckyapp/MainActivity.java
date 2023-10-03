@@ -7,6 +7,7 @@ import android.os.Environment;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewPropertyAnimator;
 import android.widget.Toast;
 
 import com.example.luckyapp.ui.capture.CaptureViewModel;
@@ -135,6 +136,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             String message = couldWrite ? "Dados salvos com sucesso no arquivo externo" : "Dados não puderam ser salvos";
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+            binding.appBarMain.animation.setVisibility(View.VISIBLE);
+            binding.appBarMain.animation.playAnimation();
         });
     }
 
