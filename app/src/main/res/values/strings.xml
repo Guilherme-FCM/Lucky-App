@@ -11,4 +11,5 @@
     <string name="menu_draw">Sortear</string>
     <string name="menu_combine">Combinar</string>
     <string name="menu_capture">Capturar</string>
+    <string name="menu_maps">Mapa</string>
 </resources>

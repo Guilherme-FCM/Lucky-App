@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import com.example.luckyapp.ui.capture.CaptureViewModel;
+import com.example.luckyapp.ui.maps.MapsFragment;
 import com.example.luckyapp.utils.FileStorage;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -17,6 +18,8 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -29,7 +32,7 @@ import com.example.luckyapp.databinding.ActivityMainBinding;
 import java.io.File;
 import java.io.FileOutputStream;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -65,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        
+        binding.appBarMain.fab.setOnClickListener(this);
     }
 
     @Override
@@ -131,5 +136,11 @@ public class MainActivity extends AppCompatActivity {
             String message = couldWrite ? "Dados salvos com sucesso no arquivo externo" : "Dados não puderam ser salvos";
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        navController.navigate(R.id.nav_maps);
     }
 }
